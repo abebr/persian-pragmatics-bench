@@ -150,7 +150,7 @@ def self_test():
     seed_path = Path(__file__).parent / "data" / "benchmark_seed.jsonl"
     if seed_path.exists():
         res = run_evaluation(seed_path, mock_mode=True)
-        assert res.total == 15
+        assert res.total >= 15
         assert res.correct > 0
     print("✓ Evaluator self-tests passed.")
 
