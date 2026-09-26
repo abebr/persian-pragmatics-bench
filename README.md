@@ -12,10 +12,10 @@
 
 | Split | File | Samples | Primary Purpose | Format |
 | :--- | :--- | :---: | :--- | :---: |
-| **SFT / Alignment (10k)** | **[`data/persian_pragmatics_sft_10k.jsonl`](data/persian_pragmatics_sft_10k.jsonl)** | **10,000** | Full Production Fine-Tuning & DPO | JSONL (8.9 MB) |
+| **SFT / Alignment (10k)** | **[`data/persian_pragmatics_sft_10k.csv`](data/persian_pragmatics_sft_10k.csv)** / [`jsonl`](data/persian_pragmatics_sft_10k.jsonl) | **10,000** | Full Production Fine-Tuning & DPO | CSV (7.8 MB) / JSONL (8.9 MB) |
 | **SFT / Alignment (5k)** | **[`data/persian_pragmatics_sft_5k.jsonl`](data/persian_pragmatics_sft_5k.jsonl)** | **5,000** | Balanced Mid-Scale Alignment | JSONL (4.5 MB) |
-| **Evaluation Bench** | **[`data/persian_pragmatics_1000.jsonl`](data/persian_pragmatics_1000.jsonl)** | **1,000** | Standardized Multi-Domain Testset | JSONL (920 KB) |
-| **Curated Seed** | **[`data/benchmark_seed.jsonl`](data/benchmark_seed.jsonl)** | **35** | Quick Verification & Unit Tests | JSONL (25 KB) |
+| **Evaluation Bench** | **[`data/persian_pragmatics_1000.csv`](data/persian_pragmatics_1000.csv)** / [`jsonl`](data/persian_pragmatics_1000.jsonl) | **1,000** | Standardized Multi-Domain Testset | CSV (792 KB) / JSONL (920 KB) |
+| **Curated Seed** | **[`data/benchmark_seed.csv`](data/benchmark_seed.csv)** / [`jsonl`](data/benchmark_seed.jsonl) | **35** | Quick Verification & Unit Tests | CSV (20 KB) / JSONL (25 KB) |
 
 ### Dataset Composition (10,000 Production SFT Samples):
 * **Balanced Categories:** 2,500 `taarof`, 2,500 `sarcasm`, 2,500 `indirect_request`, 2,500 `implicature`.
