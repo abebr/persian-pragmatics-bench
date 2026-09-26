@@ -8,23 +8,36 @@
 
 ---
 
-## 📦 Full Dataset Release (1,000 Samples)
+## 📦 Dataset Releases
 
-The complete benchmark dataset is available at **[`data/persian_pragmatics_1000.jsonl`](data/persian_pragmatics_1000.jsonl)**:
-* **Total Instances:** 1,000 validated linguistic pairs.
-* **Categories:** 250 `taarof`, 250 `sarcasm`, 250 `indirect_request`, 250 `implicature`.
-* **Domains:** 8 real-world domains (Transport, Retail/Bazaar, Restaurant, Workplace, Academia, Family/Social, Medical, Tech Support).
-* **Registers:** 3 stylistic registers (Colloquial/Slang, Polite/Social, Formal/Official).
+| Split | File | Samples | Primary Purpose | Format |
+| :--- | :--- | :---: | :--- | :---: |
+| **SFT / Alignment** | **[`data/persian_pragmatics_sft_5k.jsonl`](data/persian_pragmatics_sft_5k.jsonl)** | **5,000** | Full Supervised Fine-Tuning & DPO | JSONL (4.5 MB) |
+| **Evaluation Bench** | **[`data/persian_pragmatics_1000.jsonl`](data/persian_pragmatics_1000.jsonl)** | **1,000** | Standardized Multi-Domain Testset | JSONL (920 KB) |
+| **Curated Seed** | **[`data/benchmark_seed.jsonl`](data/benchmark_seed.jsonl)** | **35** | Quick Verification & Unit Tests | JSONL (25 KB) |
+
+### Dataset Composition (5,000 SFT Samples):
+* **Balanced Categories:** 1,250 `taarof`, 1,250 `sarcasm`, 1,250 `indirect_request`, 1,250 `implicature`.
+* **20 Situational Subdomains:** Snapp/Taxi, Bazaar/Groceries, Boutiques, Restaurants, Cafes, Government Offices, Tech Startups, Academic Labs, University Dorms, Family Gatherings, Dining Etiquette, Elevator/Entrance Courtesies, Restaurant Bill Splitting, Dental Clinics, Pharmacies, Dev Teams, Hosting/DevOps, Real Estate, Auto Mechanics, and Family Formalities.
+* **4 Formality Registers:** Colloquial/Slang (عامیانه), Bazaar Vernacular (بازاری), Socially Courteous (محترمانه), and Formal/Official (رسمی).
 
 ### Load with Hugging Face `datasets` in 1 Line:
 ```python
 from datasets import load_dataset
 
-dataset = load_dataset(
+# Load the 5,000 SFT dataset for training:
+sft_ds = load_dataset(
+    "json",
+    data_files="https://raw.githubusercontent.com/abebr/persian-pragmatics-bench/main/data/persian_pragmatics_sft_5k.jsonl"
+)
+print(f"SFT Training Samples: {len(sft_ds['train']):,}")
+
+# Load the 1,000 Evaluation Benchmark:
+bench_ds = load_dataset(
     "json",
     data_files="https://raw.githubusercontent.com/abebr/persian-pragmatics-bench/main/data/persian_pragmatics_1000.jsonl"
 )
-print(dataset["train"][0])
+print(f"Benchmark Test Samples: {len(bench_ds['train']):,}")
 ```
 
 ---
