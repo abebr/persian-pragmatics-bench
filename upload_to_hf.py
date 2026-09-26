@@ -19,10 +19,10 @@ def upload_dataset(repo_id: str, token: str, private: bool = False):
     readme_path = Path(__file__).parent / "README.md"
 
     files_to_upload = [
-        data_dir / "persian_pragmatics_sft_10k.csv",
-        data_dir / "persian_pragmatics_1000.csv",
-        data_dir / "persian_pragmatics_sft_10k.jsonl",
-        data_dir / "persian_pragmatics_1000.jsonl",
+        data_dir / "train.csv",
+        data_dir / "test.csv",
+        data_dir / "train.jsonl",
+        data_dir / "test.jsonl",
     ]
 
     for f in files_to_upload:
@@ -50,7 +50,7 @@ def upload_dataset(repo_id: str, token: str, private: bool = False):
 
 def main():
     parser = argparse.ArgumentParser(description="Upload dataset to Hugging Face Hub")
-    parser.add_argument("--repo-id", type=str, default="abebr/persian-pragmatics-bench", help="Target Hugging Face repo ID")
+    parser.add_argument("--repo-id", type=str, default="abebr/persian-pragmatics-dataset", help="Target Hugging Face repo ID")
     parser.add_argument("--token", type=str, default=os.getenv("HF_TOKEN"), help="Hugging Face User Access Token (Write permission)")
     parser.add_argument("--private", action="store_true", help="Make repository private")
     args = parser.parse_args()

@@ -18,49 +18,49 @@ tags:
 - llm-benchmark
 size_categories:
 - 10K<n<100K
+configs:
+- config_name: default
+  data_files:
+  - split: train
+    path: data/train.csv
+  - split: test
+    path: data/test.csv
 ---
 
-# Persian Pragmatics & Taarof Benchmark (`Persian-Pragmatics-Bench`)
-> A computational linguistics benchmark and extraction pipeline for evaluating pragmatic competence, indirect speech acts, sarcasm, and Ta'arof in Persian conversational AI.
+# Persian Pragmatics Dataset (`Persian-Pragmatics-Dataset`)
+> A computational linguistics benchmark and instruction dataset for evaluating and aligning pragmatic competence, indirect speech acts, sarcasm, and Ta'arof in Persian conversational AI.
 
 [![Python](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](https://python.org)
-[![CI](https://github.com/abebr/persian-pragmatics-bench/actions/workflows/ci.yml/badge.svg)](https://github.com/abebr/persian-pragmatics-bench/actions)
-[![Dataset](https://img.shields.io/badge/Dataset-1%2C000%20Samples-green.svg)](data/persian_pragmatics_1000.jsonl)
+[![CI](https://github.com/abebr/persian-pragmatics-dataset/actions/workflows/ci.yml/badge.svg)](https://github.com/abebr/persian-pragmatics-dataset/actions)
+[![HuggingFace](https://img.shields.io/badge/%F0%9F%A4%97-Hugging%20Face%20Dataset-yellow)](https://huggingface.co/datasets/abebr/persian-pragmatics-dataset)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 ---
 
-## 📦 Dataset Releases
+## 📦 Dataset Splits (Train & Test)
 
 | Split | File | Samples | Primary Purpose | Format |
 | :--- | :--- | :---: | :--- | :---: |
-| **SFT / Alignment (10k)** | **[`data/persian_pragmatics_sft_10k.csv`](data/persian_pragmatics_sft_10k.csv)** / [`jsonl`](data/persian_pragmatics_sft_10k.jsonl) | **10,000** | Full Production Fine-Tuning & DPO | CSV (7.8 MB) / JSONL (8.9 MB) |
-| **SFT / Alignment (5k)** | **[`data/persian_pragmatics_sft_5k.jsonl`](data/persian_pragmatics_sft_5k.jsonl)** | **5,000** | Balanced Mid-Scale Alignment | JSONL (4.5 MB) |
-| **Evaluation Bench** | **[`data/persian_pragmatics_1000.csv`](data/persian_pragmatics_1000.csv)** / [`jsonl`](data/persian_pragmatics_1000.jsonl) | **1,000** | Standardized Multi-Domain Testset | CSV (792 KB) / JSONL (920 KB) |
-| **Curated Seed** | **[`data/benchmark_seed.csv`](data/benchmark_seed.csv)** / [`jsonl`](data/benchmark_seed.jsonl) | **35** | Quick Verification & Unit Tests | CSV (20 KB) / JSONL (25 KB) |
+| **`train`** | **[`data/train.csv`](data/train.csv)** / [`jsonl`](data/train.jsonl) | **10,000** | Full Production Fine-Tuning & DPO | CSV (7.7 MB) / JSONL (8.9 MB) |
+| **`test`** | **[`data/test.csv`](data/test.csv)** / [`jsonl`](data/test.jsonl) | **1,000** | Standardized Multi-Domain Evaluation Benchmark | CSV (793 KB) / JSONL (921 KB) |
 
-### Dataset Composition (10,000 Production SFT Samples):
-* **Balanced Categories:** 2,500 `taarof`, 2,500 `sarcasm`, 2,500 `indirect_request`, 2,500 `implicature`.
+### Dataset Composition:
+* **Balanced Categories:** 2,500 `taarof`, 2,500 `sarcasm`, 2,500 `indirect_request`, 2,500 `implicature` in `train` (and 250 each in `test`).
 * **40 Real-World Subdomains:** Urban Taxis & Snapp, Fruit/Produce Bazaars, Boutiques, Traditional Cholo-Kababis, Modern Cafes, Government Registry Offices, Knowledge-Based Startups, Master's Defense Sessions, University Dorms, Nowruz Gatherings, Dinner Tables, Elevator/Door Courtesies, Cafe Bill Splitting, Specialist Clinics, 24/7 Pharmacies, Agile Software Teams, Server Datacenters, Real Estate Agencies, Auto Repair Shops, Formal Proposal Gatherings, Sangak Bakeries, Appliance Repairs, Barbershops, Car Dealerships, Google Meet/Zoom Meetings, Job Interviews, Metro & BRT Lines, Law Offices, Eco-Lodges, Cinema Ticket Counters, Enghelab Bookstores, Fitness Gyms, Currency Exchanges, Postal Counters, Mobile Repair Shops, Carwashes, Confectioneries, Photography Studios, Gas Stations, and Electronic Services Counters.
 * **4 Formality Registers:** Colloquial/Slang (عامیانه), Street/Bazaar Vernacular (کوچه‌بازاری), Socially Courteous (محترمانه), and Formal/Official (رسمی).
 
-### Load with Hugging Face `datasets` in 1 Line:
+### 🚀 Load in 1 Line with Hugging Face `datasets`:
 ```python
 from datasets import load_dataset
 
-# Load the full 10,000 SFT production dataset:
-train_ds = load_dataset(
-    "json",
-    data_files="https://raw.githubusercontent.com/abebr/persian-pragmatics-bench/main/data/persian_pragmatics_sft_10k.jsonl"
-)
-print(f"Production Training Samples: {len(train_ds['train']):,}")
+# Automatically loads train (10,000) and test (1,000) splits:
+dataset = load_dataset("abebr/persian-pragmatics-dataset")
 
-# Load the 1,000 Evaluation Benchmark:
-bench_ds = load_dataset(
-    "json",
-    data_files="https://raw.githubusercontent.com/abebr/persian-pragmatics-bench/main/data/persian_pragmatics_1000.jsonl"
-)
-print(f"Benchmark Test Samples: {len(bench_ds['train']):,}")
+print(dataset)
+# DatasetDict({
+#     train: Dataset({features: [...], num_rows: 10000}),
+#     test: Dataset({features: [...], num_rows: 1000})
+# })
 ```
 
 ---

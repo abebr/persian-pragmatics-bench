@@ -147,7 +147,7 @@ def self_test():
     assert "گزینه A" in prompt and "گزینه B" in prompt
 
     # Run mock eval
-    seed_path = Path(__file__).parent / "data" / "benchmark_seed.jsonl"
+    seed_path = Path(__file__).parent / "data" / "test.jsonl"
     if seed_path.exists():
         res = run_evaluation(seed_path, mock_mode=True)
         assert res.total >= 15
@@ -162,7 +162,7 @@ def main():
     parser.add_argument("--model", type=str, default="gpt-4o-mini", help="Model name")
     parser.add_argument("--api-key", type=str, default=os.getenv("OPENAI_API_KEY"), help="API Key")
     parser.add_argument("--base-url", type=str, default="https://api.openai.com/v1", help="API Base URL")
-    parser.add_argument("--dataset", type=str, default="data/benchmark_seed.jsonl", help="Dataset path")
+    parser.add_argument("--dataset", type=str, default="data/test.jsonl", help="Dataset path")
     args = parser.parse_args()
 
     if args.test:
