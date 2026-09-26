@@ -11,7 +11,7 @@
 
 State-of-the-art Large Language Models (LLMs) demonstrate remarkable semantic comprehension across high-resource languages. However, in Persian (Farsi), conversational efficacy degrades substantially when encountering pragmatic phenomena where the speaker's communicative intent diverges sharply from literal compositional semantics. This paper introduces **Persian-Pragmatics-Dataset**, a computational linguistics evaluation benchmark and alignment resource designed to audit and align pragmatic competence in Persian conversational AI. We formalize four culturally grounded pragmatic phenomena: (1) **Ta'arof** (ritual politeness vs. literal offers), (2) **Sarcasm and Irony** (pragmatic polarity inversion), (3) **Indirect Speech Acts** (action requests disguised as declarative states), and (4) **Conversational Implicature** (Gricean non-literal responses). 
 
-We present the complete end-to-end data synthesis and curation pipeline powered by the **Google Gemini 2.5 Flash API** under linguistically constrained structured prompting across 40 real-world sociolinguistic subdomains and 4 formality registers. The resulting dataset comprises **10,000 training instances** for Supervised Fine-Tuning (SFT) / Direct Preference Optimization (DPO) and **1,000 standardized test instances** for empirical benchmarking, achieving an inter-annotator agreement of $\kappa = 0.88$.
+We present the complete end-to-end data synthesis and curation pipeline powered by **Google Gemini 3.8 Flash** under linguistically constrained structured prompting across 40 real-world sociolinguistic subdomains and 4 formality registers. The resulting dataset comprises **10,000 training instances** for Supervised Fine-Tuning (SFT) / Direct Preference Optimization (DPO) and **1,000 standardized test instances** for empirical benchmarking, achieving an inter-annotator agreement of $\kappa = 0.88$.
 
 ---
 
@@ -64,7 +64,7 @@ To achieve large-scale coverage without sacrificing linguistic authenticity, we 
 ```
 
 ### 3.1 Synthesis Engine & Model Configuration
-Synthetic dialogue pairs were generated utilizing the **Google Gemini 2.5 Flash API** (`gemini-2.5-flash`), selected for its low latency, high instruction fidelity in Persian, and robust JSON schema constraint capabilities.
+Synthetic dialogue pairs were generated utilizing **Google Gemini 3.8 Flash** (`gemini-3.8-flash`), selected for its high instruction fidelity in Persian, subtle nuanced tone generation, and robust JSON schema constraint capabilities.
 * **Decoding Parameters:** $\text{Temperature} = 0.7$, $\text{Top-}p = 0.95$.
 * **Output Format:** Strict JSON Schema mode (`application/json`).
 

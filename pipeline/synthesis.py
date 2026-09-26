@@ -64,7 +64,7 @@ def generate_with_gemini(
     speech_act: str,
     count: int = 5,
     api_key: Optional[str] = None,
-    model: str = "gemini-2.5-flash"
+    model: str = "gemini-3.8-flash"
 ) -> List[Dict]:
     """Calls Google Gemini API with structured prompt and parses JSON output."""
     api_key = api_key or os.getenv("GEMINI_API_KEY")
