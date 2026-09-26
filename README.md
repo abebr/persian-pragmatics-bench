@@ -85,6 +85,7 @@ python pipeline.py --srt movie_subtitles.srt
 ## 🔬 Quality Assessment & Inter-Annotator Agreement
 
 To guarantee research-grade scientific rigor for academic publication (e.g., ACL / LREC / Persian NLP workshops):
+- Read the full technical report and academic preprint: **[paper/REPORT.md](paper/REPORT.md)**.
 - The pipeline provides built-in calculation for **Cohen's Kappa ($\kappa$)**.
 - Samples undergo double-blind human annotation to verify that pragmatic intent labels achieve $\kappa > 0.80$ before inclusion in the final benchmark.
 
