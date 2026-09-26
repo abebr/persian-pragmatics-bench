@@ -12,25 +12,26 @@
 
 | Split | File | Samples | Primary Purpose | Format |
 | :--- | :--- | :---: | :--- | :---: |
-| **SFT / Alignment** | **[`data/persian_pragmatics_sft_5k.jsonl`](data/persian_pragmatics_sft_5k.jsonl)** | **5,000** | Full Supervised Fine-Tuning & DPO | JSONL (4.5 MB) |
+| **SFT / Alignment (10k)** | **[`data/persian_pragmatics_sft_10k.jsonl`](data/persian_pragmatics_sft_10k.jsonl)** | **10,000** | Full Production Fine-Tuning & DPO | JSONL (8.9 MB) |
+| **SFT / Alignment (5k)** | **[`data/persian_pragmatics_sft_5k.jsonl`](data/persian_pragmatics_sft_5k.jsonl)** | **5,000** | Balanced Mid-Scale Alignment | JSONL (4.5 MB) |
 | **Evaluation Bench** | **[`data/persian_pragmatics_1000.jsonl`](data/persian_pragmatics_1000.jsonl)** | **1,000** | Standardized Multi-Domain Testset | JSONL (920 KB) |
 | **Curated Seed** | **[`data/benchmark_seed.jsonl`](data/benchmark_seed.jsonl)** | **35** | Quick Verification & Unit Tests | JSONL (25 KB) |
 
-### Dataset Composition (5,000 SFT Samples):
-* **Balanced Categories:** 1,250 `taarof`, 1,250 `sarcasm`, 1,250 `indirect_request`, 1,250 `implicature`.
-* **20 Situational Subdomains:** Snapp/Taxi, Bazaar/Groceries, Boutiques, Restaurants, Cafes, Government Offices, Tech Startups, Academic Labs, University Dorms, Family Gatherings, Dining Etiquette, Elevator/Entrance Courtesies, Restaurant Bill Splitting, Dental Clinics, Pharmacies, Dev Teams, Hosting/DevOps, Real Estate, Auto Mechanics, and Family Formalities.
-* **4 Formality Registers:** Colloquial/Slang (عامیانه), Bazaar Vernacular (بازاری), Socially Courteous (محترمانه), and Formal/Official (رسمی).
+### Dataset Composition (10,000 Production SFT Samples):
+* **Balanced Categories:** 2,500 `taarof`, 2,500 `sarcasm`, 2,500 `indirect_request`, 2,500 `implicature`.
+* **40 Real-World Subdomains:** Urban Taxis & Snapp, Fruit/Produce Bazaars, Boutiques, Traditional Cholo-Kababis, Modern Cafes, Government Registry Offices, Knowledge-Based Startups, Master's Defense Sessions, University Dorms, Nowruz Gatherings, Dinner Tables, Elevator/Door Courtesies, Cafe Bill Splitting, Specialist Clinics, 24/7 Pharmacies, Agile Software Teams, Server Datacenters, Real Estate Agencies, Auto Repair Shops, Formal Proposal Gatherings, Sangak Bakeries, Appliance Repairs, Barbershops, Car Dealerships, Google Meet/Zoom Meetings, Job Interviews, Metro & BRT Lines, Law Offices, Eco-Lodges, Cinema Ticket Counters, Enghelab Bookstores, Fitness Gyms, Currency Exchanges, Postal Counters, Mobile Repair Shops, Carwashes, Confectioneries, Photography Studios, Gas Stations, and Electronic Services Counters.
+* **4 Formality Registers:** Colloquial/Slang (عامیانه), Street/Bazaar Vernacular (کوچه‌بازاری), Socially Courteous (محترمانه), and Formal/Official (رسمی).
 
 ### Load with Hugging Face `datasets` in 1 Line:
 ```python
 from datasets import load_dataset
 
-# Load the 5,000 SFT dataset for training:
-sft_ds = load_dataset(
+# Load the full 10,000 SFT production dataset:
+train_ds = load_dataset(
     "json",
-    data_files="https://raw.githubusercontent.com/abebr/persian-pragmatics-bench/main/data/persian_pragmatics_sft_5k.jsonl"
+    data_files="https://raw.githubusercontent.com/abebr/persian-pragmatics-bench/main/data/persian_pragmatics_sft_10k.jsonl"
 )
-print(f"SFT Training Samples: {len(sft_ds['train']):,}")
+print(f"Production Training Samples: {len(train_ds['train']):,}")
 
 # Load the 1,000 Evaluation Benchmark:
 bench_ds = load_dataset(
