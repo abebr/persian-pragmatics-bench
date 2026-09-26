@@ -10,21 +10,21 @@
   ],
   "test_split": {
     "total": 1000,
-    "accepted": 1000,
-    "rejected": 0,
-    "acceptance_rate": 100.0,
-    "mean_quality_score": 5.0
+    "accepted": 250,
+    "rejected": 750,
+    "acceptance_rate": 25.0,
+    "mean_quality_score": 4.55
   },
   "train_split": {
     "total": 5000,
-    "accepted": 5000,
-    "rejected": 0,
-    "acceptance_rate": 100.0,
-    "mean_quality_score": 5.0
+    "accepted": 1277,
+    "rejected": 3723,
+    "acceptance_rate": 25.5,
+    "mean_quality_score": 4.55
   },
   "sample_verdicts": [
     {
-      "id": "taarof-00626",
+      "id": "taarof-00314",
       "naturalness": 5,
       "pragmatic_gap": 5,
       "context_fit": 5,
@@ -35,7 +35,7 @@
       "reason": "Passed all 6 linguistic, context, and diversity criteria."
     },
     {
-      "id": "taarof-00627",
+      "id": "taarof-00315",
       "naturalness": 5,
       "pragmatic_gap": 5,
       "context_fit": 5,
@@ -46,7 +46,7 @@
       "reason": "Passed all 6 linguistic, context, and diversity criteria."
     },
     {
-      "id": "taarof-00628",
+      "id": "taarof-00316",
       "naturalness": 5,
       "pragmatic_gap": 5,
       "context_fit": 5,
@@ -57,7 +57,7 @@
       "reason": "Passed all 6 linguistic, context, and diversity criteria."
     },
     {
-      "id": "taarof-00629",
+      "id": "taarof-00317",
       "naturalness": 5,
       "pragmatic_gap": 5,
       "context_fit": 5,
@@ -68,7 +68,7 @@
       "reason": "Passed all 6 linguistic, context, and diversity criteria."
     },
     {
-      "id": "taarof-00630",
+      "id": "taarof-00318",
       "naturalness": 5,
       "pragmatic_gap": 5,
       "context_fit": 5,
@@ -79,7 +79,7 @@
       "reason": "Passed all 6 linguistic, context, and diversity criteria."
     },
     {
-      "id": "taarof-00631",
+      "id": "taarof-00319",
       "naturalness": 5,
       "pragmatic_gap": 5,
       "context_fit": 5,
@@ -90,7 +90,7 @@
       "reason": "Passed all 6 linguistic, context, and diversity criteria."
     },
     {
-      "id": "taarof-00632",
+      "id": "taarof-00320",
       "naturalness": 5,
       "pragmatic_gap": 5,
       "context_fit": 5,
@@ -101,7 +101,7 @@
       "reason": "Passed all 6 linguistic, context, and diversity criteria."
     },
     {
-      "id": "taarof-00633",
+      "id": "taarof-00321",
       "naturalness": 5,
       "pragmatic_gap": 5,
       "context_fit": 5,
@@ -112,7 +112,7 @@
       "reason": "Passed all 6 linguistic, context, and diversity criteria."
     },
     {
-      "id": "taarof-00634",
+      "id": "taarof-00322",
       "naturalness": 5,
       "pragmatic_gap": 5,
       "context_fit": 5,
@@ -123,7 +123,7 @@
       "reason": "Passed all 6 linguistic, context, and diversity criteria."
     },
     {
-      "id": "taarof-00635",
+      "id": "taarof-00323",
       "naturalness": 5,
       "pragmatic_gap": 5,
       "context_fit": 5,
