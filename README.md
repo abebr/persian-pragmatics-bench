@@ -1,3 +1,25 @@
+---
+language:
+- fa
+license: mit
+task_categories:
+- text-generation
+- text-classification
+task_ids:
+- dialogue-modeling
+tags:
+- persian
+- farsi
+- pragmatics
+- taarof
+- speech-acts
+- sarcasm
+- conversational-ai
+- llm-benchmark
+size_categories:
+- 10K<n<100K
+---
+
 # Persian Pragmatics & Taarof Benchmark (`Persian-Pragmatics-Bench`)
 > A computational linguistics benchmark and extraction pipeline for evaluating pragmatic competence, indirect speech acts, sarcasm, and Ta'arof in Persian conversational AI.
 
