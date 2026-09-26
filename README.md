@@ -2,6 +2,7 @@
 > A computational linguistics benchmark and extraction pipeline for evaluating pragmatic competence, indirect speech acts, sarcasm, and Ta'arof in Persian conversational AI.
 
 [![Python](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](https://python.org)
+[![CI](https://github.com/abebr/persian-pragmatics-bench/actions/workflows/ci.yml/badge.svg)](https://github.com/abebr/persian-pragmatics-bench/actions)
 [![Dataset](https://img.shields.io/badge/Format-JSONL-orange.svg)](data/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
