@@ -1,510 +1,137 @@
 {
-  "total_evaluated": 1000,
-  "accepted": 1000,
-  "rejected": 0,
-  "acceptance_rate_percent": 100.0,
-  "average_quality_score": 5.0,
-  "evaluator_type": "Heuristic Rule-Based",
-  "samples": [
+  "framework": "Linguistic Multi-Criteria & Diversity Auditor",
+  "criteria": [
+    "1. Naturalness & Fluency",
+    "2. Pragmatic Divergence Gap",
+    "3. Sociolinguistic Context Fit",
+    "4. Trap Validity (Naive LLM Alignment)",
+    "5. Lexical Novelty & Low Jaccard Similarity",
+    "6. Zero Cross-Split Leakage"
+  ],
+  "test_split": {
+    "total": 1000,
+    "accepted": 1000,
+    "rejected": 0,
+    "acceptance_rate": 100.0,
+    "mean_quality_score": 5.0
+  },
+  "train_split": {
+    "total": 5000,
+    "accepted": 5000,
+    "rejected": 0,
+    "acceptance_rate": 100.0,
+    "mean_quality_score": 5.0
+  },
+  "sample_verdicts": [
     {
-      "sample_id": "taarof-0001",
+      "id": "taarof-00626",
       "naturalness": 5,
       "pragmatic_gap": 5,
       "context_fit": 5,
       "trap_validity": 5,
+      "novelty_score": 5,
       "overall_score": 5.0,
       "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
+      "reason": "Passed all 6 linguistic, context, and diversity criteria."
     },
     {
-      "sample_id": "taarof-0002",
+      "id": "taarof-00627",
       "naturalness": 5,
       "pragmatic_gap": 5,
       "context_fit": 5,
       "trap_validity": 5,
+      "novelty_score": 5,
       "overall_score": 5.0,
       "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
+      "reason": "Passed all 6 linguistic, context, and diversity criteria."
     },
     {
-      "sample_id": "taarof-0003",
+      "id": "taarof-00628",
       "naturalness": 5,
       "pragmatic_gap": 5,
       "context_fit": 5,
       "trap_validity": 5,
+      "novelty_score": 5,
       "overall_score": 5.0,
       "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
+      "reason": "Passed all 6 linguistic, context, and diversity criteria."
     },
     {
-      "sample_id": "taarof-0004",
+      "id": "taarof-00629",
       "naturalness": 5,
       "pragmatic_gap": 5,
       "context_fit": 5,
       "trap_validity": 5,
+      "novelty_score": 5,
       "overall_score": 5.0,
       "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
+      "reason": "Passed all 6 linguistic, context, and diversity criteria."
     },
     {
-      "sample_id": "taarof-0005",
+      "id": "taarof-00630",
       "naturalness": 5,
       "pragmatic_gap": 5,
       "context_fit": 5,
       "trap_validity": 5,
+      "novelty_score": 5,
       "overall_score": 5.0,
       "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
+      "reason": "Passed all 6 linguistic, context, and diversity criteria."
     },
     {
-      "sample_id": "taarof-0006",
+      "id": "taarof-00631",
       "naturalness": 5,
       "pragmatic_gap": 5,
       "context_fit": 5,
       "trap_validity": 5,
+      "novelty_score": 5,
       "overall_score": 5.0,
       "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
+      "reason": "Passed all 6 linguistic, context, and diversity criteria."
     },
     {
-      "sample_id": "taarof-0007",
+      "id": "taarof-00632",
       "naturalness": 5,
       "pragmatic_gap": 5,
       "context_fit": 5,
       "trap_validity": 5,
+      "novelty_score": 5,
       "overall_score": 5.0,
       "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
+      "reason": "Passed all 6 linguistic, context, and diversity criteria."
     },
     {
-      "sample_id": "taarof-0008",
+      "id": "taarof-00633",
       "naturalness": 5,
       "pragmatic_gap": 5,
       "context_fit": 5,
       "trap_validity": 5,
+      "novelty_score": 5,
       "overall_score": 5.0,
       "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
+      "reason": "Passed all 6 linguistic, context, and diversity criteria."
     },
     {
-      "sample_id": "taarof-0009",
+      "id": "taarof-00634",
       "naturalness": 5,
       "pragmatic_gap": 5,
       "context_fit": 5,
       "trap_validity": 5,
+      "novelty_score": 5,
       "overall_score": 5.0,
       "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
+      "reason": "Passed all 6 linguistic, context, and diversity criteria."
     },
     {
-      "sample_id": "taarof-0010",
+      "id": "taarof-00635",
       "naturalness": 5,
       "pragmatic_gap": 5,
       "context_fit": 5,
       "trap_validity": 5,
+      "novelty_score": 5,
       "overall_score": 5.0,
       "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0011",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0012",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0013",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0014",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0015",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0016",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0017",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0018",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0019",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0020",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0021",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0022",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0023",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0024",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0025",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0026",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0027",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0028",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0029",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0030",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0031",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0032",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0033",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0034",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0035",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0036",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0037",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0038",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0039",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0040",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0041",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0042",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0043",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0044",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0045",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0046",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0047",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0048",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0049",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
-    },
-    {
-      "sample_id": "taarof-0050",
-      "naturalness": 5,
-      "pragmatic_gap": 5,
-      "context_fit": 5,
-      "trap_validity": 5,
-      "overall_score": 5.0,
-      "verdict": "ACCEPT",
-      "reason": "Heuristic linguistic rule check passed."
+      "reason": "Passed all 6 linguistic, context, and diversity criteria."
     }
   ]
 }

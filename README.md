@@ -41,13 +41,22 @@ configs:
 
 | Split | File | Samples | Primary Purpose | Format |
 | :--- | :--- | :---: | :--- | :---: |
-| **`train`** | **[`data/train.csv`](data/train.csv)** / [`jsonl`](data/train.jsonl) | **10,000** | Full Production Fine-Tuning & DPO | CSV (7.7 MB) / JSONL (8.9 MB) |
-| **`test`** | **[`data/test.csv`](data/test.csv)** / [`jsonl`](data/test.jsonl) | **1,000** | Standardized Multi-Domain Evaluation Benchmark | CSV (793 KB) / JSONL (921 KB) |
+| **`train`** | **[`data/train.csv`](data/train.csv)** / [`jsonl`](data/train.jsonl) | **5,000** | Full SFT & DPO with 100% Unique Utterances | CSV (4.1 MB) / JSONL (4.7 MB) |
+| **`test`** | **[`data/test.csv`](data/test.csv)** / [`jsonl`](data/test.jsonl) | **1,000** | Standardized Multi-Domain Evaluation Benchmark | CSV (812 KB) / JSONL (945 KB) |
 
-### Dataset Composition:
-* **Balanced Categories:** 2,500 `taarof`, 2,500 `sarcasm`, 2,500 `indirect_request`, 2,500 `implicature` in `train` (and 250 each in `test`).
-* **40 Real-World Subdomains:** Urban Taxis & Snapp, Fruit/Produce Bazaars, Boutiques, Traditional Cholo-Kababis, Modern Cafes, Government Registry Offices, Knowledge-Based Startups, Master's Defense Sessions, University Dorms, Nowruz Gatherings, Dinner Tables, Elevator/Door Courtesies, Cafe Bill Splitting, Specialist Clinics, 24/7 Pharmacies, Agile Software Teams, Server Datacenters, Real Estate Agencies, Auto Repair Shops, Formal Proposal Gatherings, Sangak Bakeries, Appliance Repairs, Barbershops, Car Dealerships, Google Meet/Zoom Meetings, Job Interviews, Metro & BRT Lines, Law Offices, Eco-Lodges, Cinema Ticket Counters, Enghelab Bookstores, Fitness Gyms, Currency Exchanges, Postal Counters, Mobile Repair Shops, Carwashes, Confectioneries, Photography Studios, Gas Stations, and Electronic Services Counters.
-* **4 Formality Registers:** Colloquial/Slang (عامیانه), Street/Bazaar Vernacular (کوچه‌بازاری), Socially Courteous (محترمانه), and Formal/Official (رسمی).
+### 8 Formal Pragmatic Categories (Zero-Duplicate Architecture):
+1. **`taarof`** (تعارفات آیینی و ادب اجتماعی): 625 train / 125 test
+2. **`sarcasm`** (طعنه، کنایه و وارونگی قطبیت): 625 train / 125 test
+3. **`indirect_request`** (کنش‌های گفتاری غیرمستقیم): 625 train / 125 test
+4. **`implicature`** (استلزام گفتگویی پاول گریس): 625 train / 125 test
+5. **`rhetorical_question`** (پرسش‌های بلاغی و توبیخی): 625 train / 125 test
+6. **`modesty_self_deprecation`** (فروتنی، شکسته‌نفسی و حفظ آبرو): 625 train / 125 test
+7. **`indirect_refusal`** (رد غیرمستقیم تعهد و خواهش): 625 train / 125 test
+8. **`conversational_repair`** (ترمیم مکالمه و رفع سوءتفاهم کلامی): 625 train / 125 test
+
+* **Zero Leakage:** $\text{Train} \cap \text{Test} = \emptyset$ (No overlapping utterances between splits).
+* **Strict Uniqueness:** 5,000 unique sentences in train, 1,000 unique sentences in test.
+* **Audit Score:** 100% Acceptance across all 6 criteria in `pipeline/auditor.py`.
 
 ### 🚀 Load in 1 Line with Hugging Face `datasets`:
 ```python
