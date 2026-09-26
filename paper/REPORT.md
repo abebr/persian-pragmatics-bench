@@ -69,7 +69,7 @@ Synthetic dialogue pairs were generated utilizing **Google Gemini 3.8 Flash** (`
 * **Output Format:** Strict JSON Schema mode (`application/json`).
 
 ### 3.2 System Prompt & Prompt Template
-The generation was guided by expert-authored linguistic directives:
+The generation was guided by expert-authored linguistic directives across all 8 pragmatic categories. The complete, verbatim prompt specifications for every category are codified in `pipeline/prompts.py` and provided in full in **[Appendix A (APPENDIX_PROMPTS.md)](APPENDIX_PROMPTS.md)**.
 
 ```text
 [System Instruction]
