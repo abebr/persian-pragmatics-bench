@@ -63,7 +63,17 @@ Validate schema integrity, missing fields, and formatting:
 python pipeline.py --validate data/benchmark_seed.jsonl
 ```
 
-### 3. Extract Dialogue Candidates from Subtitles (`.srt`)
+### 3. Run LLM Pragmatic Evaluation
+Run an evaluation against any OpenAI-compatible API or test offline in mock simulation:
+```bash
+# Offline simulation test
+python evaluate.py --mock
+
+# Run against real LLM (OpenAI, OpenRouter, vLLM, or Ollama)
+python evaluate.py --model gpt-4o-mini --api-key YOUR_API_KEY
+```
+
+### 4. Extract Dialogue Candidates from Subtitles (`.srt`)
 Extract turn-taking dialogue sequences and detect pragmatic markers from Persian movie or TV show subtitles:
 ```bash
 python pipeline.py --srt movie_subtitles.srt
