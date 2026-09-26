@@ -3,8 +3,29 @@
 
 [![Python](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](https://python.org)
 [![CI](https://github.com/abebr/persian-pragmatics-bench/actions/workflows/ci.yml/badge.svg)](https://github.com/abebr/persian-pragmatics-bench/actions)
-[![Dataset](https://img.shields.io/badge/Format-JSONL-orange.svg)](data/)
+[![Dataset](https://img.shields.io/badge/Dataset-1%2C000%20Samples-green.svg)](data/persian_pragmatics_1000.jsonl)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
+---
+
+## 📦 Full Dataset Release (1,000 Samples)
+
+The complete benchmark dataset is available at **[`data/persian_pragmatics_1000.jsonl`](data/persian_pragmatics_1000.jsonl)**:
+* **Total Instances:** 1,000 validated linguistic pairs.
+* **Categories:** 250 `taarof`, 250 `sarcasm`, 250 `indirect_request`, 250 `implicature`.
+* **Domains:** 8 real-world domains (Transport, Retail/Bazaar, Restaurant, Workplace, Academia, Family/Social, Medical, Tech Support).
+* **Registers:** 3 stylistic registers (Colloquial/Slang, Polite/Social, Formal/Official).
+
+### Load with Hugging Face `datasets` in 1 Line:
+```python
+from datasets import load_dataset
+
+dataset = load_dataset(
+    "json",
+    data_files="https://raw.githubusercontent.com/abebr/persian-pragmatics-bench/main/data/persian_pragmatics_1000.jsonl"
+)
+print(dataset["train"][0])
+```
 
 ---
 
