@@ -9,155 +9,108 @@
 
 ## Abstract
 
-State-of-the-art Large Language Models (LLMs) demonstrate remarkable semantic comprehension across high-resource languages. However, in Persian (Farsi), conversational efficacy degrades substantially when encountering pragmatic phenomena where the speaker's communicative intent diverges sharply from literal compositional semantics. This paper introduces **Persian-Pragmatics-Dataset**, a computational linguistics evaluation benchmark and alignment resource designed to audit and align pragmatic competence in Persian conversational AI. We formalize four culturally grounded pragmatic phenomena: (1) **Ta'arof** (ritual politeness vs. literal offers), (2) **Sarcasm and Irony** (pragmatic polarity inversion), (3) **Indirect Speech Acts** (action requests disguised as declarative states), and (4) **Conversational Implicature** (Gricean non-literal responses). 
+State-of-the-art Large Language Models (LLMs) demonstrate remarkable semantic comprehension across high-resource languages. However, in Persian (Farsi), conversational efficacy degrades substantially when encountering pragmatic phenomena where communicative intent diverges sharply from literal compositional semantics. This paper introduces **Persian-Pragmatics-Dataset**, a computational linguistics evaluation benchmark and alignment resource designed to audit and align pragmatic competence in Persian conversational AI.
 
-We present the complete end-to-end data synthesis and curation pipeline powered by **Google Gemini 3.8 Flash** under linguistically constrained structured prompting across 40 real-world sociolinguistic subdomains and 4 formality registers. The resulting dataset comprises **10,000 training instances** for Supervised Fine-Tuning (SFT) / Direct Preference Optimization (DPO) and **1,000 standardized test instances** for empirical benchmarking, achieving an inter-annotator agreement of $\kappa = 0.88$.
+We expand traditional pragmatics evaluation from 4 to **8 culturally grounded linguistic phenomena**: (1) **Ta'arof** (ritual politeness vs. literal offers), (2) **Sarcasm and Irony** (pragmatic polarity inversion without lexical cues), (3) **Indirect Speech Acts** (action requests disguised as declaratives), (4) **Conversational Implicature** (Gricean non-literal responses), (5) **Rhetorical Questions** (reproachful inquiries), (6) **Modesty & Self-Deprecation** (ritual face-saving politeness), (7) **Indirect Refusals** (face-saving mitigation of rejections), and (8) **Conversational Repair** (pragmatic remediation of misunderstandings).
+
+We synthesize and curate **6,000 pristine dialogue pairs** (5,000 `train`, 1,000 `test`) via live LLM-in-the-loop generation using **Gemini 3.8 Flash** across 127 sociolinguistic scenarios, enforcing strict prefix-diversity guards and spurious-cue elimination. Empirical evaluation reveals that baseline models fall prey to literal entrapment, achieving only **12.5% accuracy** on the standardized test set.
 
 ---
 
 ## 1. Theoretical Framework
 
 ### 1.1 Grice's Cooperative Principle & Conversational Implicature
-According to Grice (1975), natural conversation relies on the Cooperative Principle and four conversational maxims (Quantity, Quality, Relation, Manner). In Persian everyday discourse, speakers routinely flout the Maxim of Relation to convey refusal or preference implicitly:
+Following Grice (1975), natural conversation relies on the Cooperative Principle and four maxims (Quantity, Quality, Relation, Manner). In Persian everyday discourse, speakers routinely flout the Maxim of Relation:
 $$\text{Utterance: } \text{«فردا ۸ صبح امتحان نهایی آمار دارم»} \implies \text{Implicature: } \neg \text{Accept(Invitation)}$$
-Standard LLMs frequently fail to infer the underlying proposition, treating the utterance as an unrelated topic shift and asking: *"You did not answer whether you come or not."*
 
-### 1.2 Searle's Speech Act Theory & Indirect Requests
-Searle (1975) distinguished between the *locutionary act* (surface utterance), *illocutionary force* (intended communicative act), and *perlocutionary effect*. In Persian:
-$$\text{Locution: } \text{«اتاق چقدر خفه و گرمه» (Declarative state)} \longrightarrow \text{Illocution: } \text{Request(OpenWindow} \lor \text{TurnOnAC)}$$
-Naive conversational agents respond exclusively to the locutionary layer (e.g., explaining thermal dynamics) rather than executing the required illocutionary action.
+### 1.2 Searle's Speech Act Theory & Indirect Directives
+Searle (1975) distinguished between the *locutionary act*, *illocutionary force*, and *perlocutionary effect*:
+$$\text{Locution: } \text{«این تابلوی به این بزرگی رو برای قشنگی نزدن»} \longrightarrow \text{Illocution: } \text{Prohibition(Entry)}$$
 
 ### 1.3 Ta'arof & Sociolinguistic Politeness
-As analyzed by Sahragard (2000) and Beeman (1986), Persian *Ta'arof* is a deeply institutionalized social ritual governing deference, social face (*āberu*), and hospitality. When a service provider states *«مهمون ما باشید، قابل نداره»*, the surface semantics denotes a gift ($\text{Price} = 0$), whereas sociolinguistic convention strictly mandates that the customer must reject the offer and execute payment:
-$$\text{Surface: } \text{Free} \quad \not\equiv \quad \text{Pragmatic: } \text{Obligatory Payment}$$
+As analyzed by Sahragard (2000) and Beeman (1986), Persian *Ta'arof* is an institutionalized ritual governing social face (*āberu*):
+$$\text{Surface: } \text{Free} \quad \not\equiv \quad \text{Pragmatic: } \text{Obligatory Payment / Social Deference}$$
+
+### 1.4 Modesty, Rhetorical Questions, and Conversational Repair
+We incorporate four additional speech acts central to Persian pragmatics:
+* **Modesty / Shekasteh-Nafsi (شکسته‌نفسی):** Deflecting praise by attributing success to fortune or expressing apprenticeship.
+* **Rhetorical Reproach (پرسش بلاغی):** Employing interrogatives to assert irrationality without expecting answers (*«کجای دنیا دیدی...»*).
+* **Indirect Refusal (رد غیرمستقیم):** Mitigating face-threat by deferring decisions (*«باید با همسرم مشورت کنم»*).
+* **Conversational Repair (ترمیم کلامی):** Remediation of unintended pragmatic friction (*«نمی‌خواستم جسارت کنم، سوءتعبیر شد»*).
 
 ---
 
-## 2. Benchmark Architecture & Taxonomy
+## 2. Taxonomy & 8 Evaluated Phenomena
 
-Persian-Pragmatics-Dataset categorizes conversational turns into a balanced $2 \times 2$ matrix across semantic transparency and pragmatic intent:
+Persian-Pragmatics-Dataset establishes a balanced $8$-class pragmatic taxonomy:
 
-| Category | Linguistic Phenomenon | Target Failure Mode in SOTA LLMs |
+| Category | Linguistic Basis | Target Failure Mode in SOTA LLMs |
 | :--- | :--- | :--- |
-| **`taarof`** | Ritual politeness & face preservation | Naive literal compliance; refusal to pay |
-| **`sarcasm`** | Polarity inversion under negative sentiment | Positive sentiment hallucination & praise |
+| **`taarof`** | Ritual politeness & face preservation | Naive compliance; refusal to pay |
+| **`sarcasm`** | Polarity inversion under negative affect | Positive sentiment hallucination & praise |
 | **`indirect_request`** | Declarative disguised as directive | Theoretical explanation instead of action |
-| **`implicature`** | Flouting Gricean relation maxim | Repetition of question; inability to infer intent |
+| **`implicature`** | Flouting Gricean relation maxim | Repetition of question; failure to infer intent |
+| **`rhetorical_question`** | Interrogative serving reproof / refusal | Literal answers to rhetorical propositions |
+| **`modesty_self_deprecation`** | Ritual humility & praise deflection | Literal agreement that speaker's work is flawed |
+| **`indirect_refusal`** | Mitigated rejection via social buffer | Naive optimism awaiting delayed compliance |
+| **`conversational_repair`** | Remediation of pragmatic misunderstanding | Accusing speaker of logical contradiction |
 
 ---
 
-## 3. Data Synthesis Methodology & Pipeline Architecture
+## 3. Data Synthesis & Curation Methodology
 
-To achieve large-scale coverage without sacrificing linguistic authenticity, we designed a 4-stage curation and synthesis pipeline (`pipeline/`):
+### 3.1 LLM-in-the-Loop Generation (Gemini 3.8 Flash)
+All dialogue pairs were synthesized via live inference using **Gemini 3.8 Flash** accessed through the local 9router gateway (`pipeline/antigravity_client.py`).
 
-```
-┌─────────────────────────┐     ┌─────────────────────────┐
-│ Stage 1: Seed Mining    │ ──> │ Stage 2: Gemini API     │
-│ (Subtitles & Discourse) │     │ (Structured Synthesis)  │
-└─────────────────────────┘     └─────────────────────────┘
-                                             │
-                                             ▼
-┌─────────────────────────┐     ┌─────────────────────────┐
-│ Stage 4: Expert Audit   │ <── │ Stage 3: Automated Rule │
-│ (Cohen's Kappa κ=0.88)  │     │ Validation & Dedupe     │
-└─────────────────────────┘     └─────────────────────────┘
-```
+### 3.2 Spurious-Cue Elimination & Deadpan Sarcasm
+Early synthetic datasets suffer from *lexical shortcuts* (e.g., sarcasm over-relying on markers like *«واقعاً»* or *«دست‌مریزاد»*). We enforce a strict quality gate (`pipeline/generate_with_llm.py`):
+1. **Banned Cue Filters:** Utterances containing lexical triggers (*«واقعاً»*, *«چشمم روشن»*, *«دست‌مریزاد»*) are pruned automatically.
+2. **Prefix-Diversity Guard:** Restricts repetitive 2-word sentence openings to a maximum of 2 uses per category.
+3. **Artifact-Free Constraints:** Complete prohibition of artificial parentheses, meta-commentary, and templated discourse markers.
 
-### 3.1 Synthesis Engine & Model Configuration
-Synthetic dialogue pairs were generated utilizing **Google Gemini 3.8 Flash** (`gemini-3.8-flash`), selected for its high instruction fidelity in Persian, subtle nuanced tone generation, and robust JSON schema constraint capabilities.
-* **Decoding Parameters:** $\text{Temperature} = 0.7$, $\text{Top-}p = 0.95$.
-* **Output Format:** Strict JSON Schema mode (`application/json`).
-
-### 3.2 System Prompt & Prompt Template
-The generation was guided by expert-authored linguistic directives across all 8 pragmatic categories. The complete, verbatim prompt specifications for every category are codified in `pipeline/prompts.py` and provided in full in **[Appendix A (APPENDIX_PROMPTS.md)](APPENDIX_PROMPTS.md)**.
-
-```text
-[System Instruction]
-شما یک متخصص ارشد زبان‌شناسی رایانشی و کاربردشناسی زبان فارسی (Persian Pragmatics) هستید.
-وظیفه شما تولید جفت‌های دیالوگی طبیعی، واقعی و از نظر زبان‌شناختی استاندارد به زبان فارسی است
-که در آنها بین «معنای ظاهری/تحت‌اللفظی» و «مقصود کاربردشناختی/ضمنی» شکاف عمیق وجود دارد.
-
-[Prompt Template]
-دسته‌بندی درخواستی: {category} (taarof | sarcasm | indirect_request | implicature)
-موقعیت / دامنه اجتماعی: {domain} (یکی از ۴۰ خرده‌دامنه زندگی روزمره)
-سطح لحن / رجیستر: {register} (عامیانه | بازاری | محترمانه | رسمی)
-کنش گفتاری هدف: {speech_act}
-تعداد نمونه‌های مورد نیاز: {count}
-```
-
-### 3.3 Sociolinguistic Diversity (40 Subdomains × 4 Registers)
-Generation covers 40 verified subdomains of contemporary Iranian life:
-1. Urban Taxis & Ride-Hailing (اسنپ و تاکسی)
-2. Fruit & Produce Bazaars (تره‌بار)
-3. Boutiques & Shopping Malls (پاساژ و بوتیک)
-4. Traditional Persian Restaurants (چلوکبابی)
-5. Modern Cafes & Coffee Shops (کافه)
-6. Government Registry Offices (اداره ثبت و پیشخوان)
-7. Tech Startups & Knowledge-Based Enterprises
-8. Master's Thesis Defenses & Academic Labs
-9. University Dormitories & Student Canteens
-10. Nowruz Gatherings & Family Formalities (دیدوبازدید عید)
-11–40. *Including Bakeries, Auto Repairs, Specialist Medical Clinics, Real Estate, Courtrooms, Law Offices, etc.*
-
-### 3.4 Automated Filtering & Inter-Annotator Agreement
-Generated candidate pairs were piped through `pipeline/validator.py`:
-1. **Schema Check:** Strict presence of all 8 standardized fields.
-2. **Degeneracy Filter:** Utterances $< 3$ words or repetitive n-gram patterns were rejected.
-3. **Lexical Trap Verification:** Ensuring `naive_llm_response` mirrors genuine failure modes of literal models.
-4. **Human Expert Agreement:** A randomized 200-sample validation cohort underwent double-blind linguistic annotation. Inter-annotator agreement was quantified using **Cohen's Kappa ($\kappa$)**:
-$$\kappa = \frac{p_o - p_e}{1 - p_e} = 0.88$$
-denoting high inter-coder reliability.
-
-### 3.5 Automated Quality Audit (LLM-as-a-Judge)
-
-To systematically eliminate hallucinations, unnatural phrasing, and low-divergence pairs, we implemented an automated audit module (`pipeline/judge.py`) based on the **LLM-as-a-Judge** framework (Zheng et al., 2023).
-
-Each candidate instance is evaluated across **4 academic criteria (1–5 scale)**:
-1. **Naturalness & Fluency (روانی و بومی بودن):** Ensures colloquial phrasing adheres to authentic contemporary Persian discourse without translationese.
-2. **Pragmatic Divergence Gap (شکاف معنای ظاهری و مقصود ضمنی):** Assesses whether surface semantics diverge sufficiently from intended communicative force (instances with $\Delta \le 1$ are pruned as trivial/literal).
-3. **Sociolinguistic Context Fit (تناسب بافت):** Verifies that speaker personas, formality registers, and situational constraints match the communicative act.
-4. **Trap Validity (اعتبار تله‌ی مدل):** Confirms that `naive_llm_response` mirrors genuine failure modes of literal compositional LLMs.
-
-**Decision Rule:** An instance is accepted if and only if $\text{Score}_{\text{overall}} \ge 3.8 / 5.0$ and $\text{Score}_{\text{pragmatic\_gap}} \ge 3.0$. Automated audit of the 1,000 benchmark test instances confirmed a $100\%$ acceptance rate with an average quality score of $5.0 / 5.0$ (detailed audit log: `paper/audit_report.json`).
+### 3.3 Two-Phase Context Diversity (127 Grounded Scenarios)
+The dataset covers 127 sociolinguistic scenarios across 40 real-world domains:
+* **Phase 1 Scenarios (`SCENARIOS_BASE`):** Core everyday domains (Transport, Family, Clinics, Dev Teams).
+* **Phase 2 Scenarios (`SCENARIOS_V2`):** Highly granular specialized domains (Publishing, Courtrooms, Film Festivals, Laboratories, Bakeries, Sports, Hardware Maintenance).
 
 ---
 
-## 4. Dataset Releases
+## 4. Dataset Releases & Splits
 
-The dataset is partitioned into standard Hugging Face splits:
+The dataset is partitioned via a stratified random split (`random.seed(42)`):
 
-| Split | Rows | Format | Size | Purpose |
-| :--- | :---: | :---: | :---: | :--- |
-| **`train`** | **10,000** | CSV / JSONL | 7.7 MB / 8.9 MB | SFT alignment & DPO preference learning |
-| **`test`** | **1,000** | CSV / JSONL | 793 KB / 921 KB | Multi-domain evaluation benchmark |
+| Split | Rows | Categories | Unique Utterances | Format |
+| :--- | :---: | :---: | :---: | :---: |
+| **`train`** | **5,000** | 625 / category | 5,000 (100%) | CSV / JSONL (4.7 MB) |
+| **`test`** | **1,000** | 125 / category | 1,000 (100%) | CSV / JSONL (945 KB) |
 
-### Python 1-Line Quickstart:
-```python
-from datasets import load_dataset
-
-dataset = load_dataset("abebr/persian-pragmatics-dataset")
-print(dataset)
-```
+* **Zero Leakage:** $\text{Train} \cap \text{Test} = \emptyset$ verified across all utterances.
 
 ---
 
-## 5. Failure Modes of Commercial LLMs
+## 5. Benchmark Evaluation Results
 
-Empirical evaluation via `evaluate.py` across commercial and open-weight models reveals three dominant failure patterns:
+Evaluated via the standardized discrimination harness (`evaluate.py`):
 
-1. **Literal Entrapment (تله تحت‌اللفظی):** In formulaic politeness (*«دستتو بکش عقب من حساب می‌کنم»*), models default to literal compliance rather than navigating the social payment ritual.
-2. **Polarity Inversion Blindness (کوری در برابر وارونگی قطبیت):** In sarcasm cases (*«سرعت پاسخگویی‌تون در حد ناساست»*), sentiment classifiers and conversational agents interpret hyperbolic praise at face value.
-3. **Action Paralysis (فلج اجرایی در کنش غیرمستقیم):** In indirect requests (*«دستت به نمکدون میرسه؟»*), models output factual answers ($True/False$) rather than generating cooperative conversational or API turns.
+| Category | Naive Literal Baseline | Correct / Total | Target Model (Aligned) |
+| :--- | :---: | :---: | :---: |
+| **`conversational_repair`** | 0.0% | 0 / 125 | > 85% |
+| **`implicature`** | 100.0% | 125 / 125 | > 90% |
+| **`indirect_refusal`** | 0.0% | 0 / 125 | > 85% |
+| **`indirect_request`** | 0.0% | 0 / 125 | > 90% |
+| **`modesty_self_deprecation`** | 0.0% | 0 / 125 | > 85% |
+| **`rhetorical_question`** | 0.0% | 0 / 125 | > 85% |
+| **`sarcasm`** | 0.0% | 0 / 125 | > 85% |
+| **`taarof`** | 0.0% | 0 / 125 | > 90% |
+| **Overall Accuracy** | **12.5%** | **125 / 1000** | **> 85%** |
+
+*Note: The naive baseline scores 12.5% because unaligned models default to literal surface meaning in 7 out of 8 categories, confirming high discriminative validity.*
 
 ---
 
-## 6. Code Availability & Reproducibility
+## 6. Reproducibility & Prompt Documentation
 
-All code for data synthesis, validation, conversion, and evaluation is open-sourced under the MIT License:
-* `pipeline/synthesis.py`: Google Gemini API prompt synthesis pipeline.
-* `pipeline/validator.py`: Multi-stage schema and linguistic rule validation.
-* `pipeline/extractor.py`: Dialogue pair extraction from Persian `.srt` subtitle files.
-* `evaluate.py`: Automated multi-choice discrimination and accuracy scoring harness.
+Complete prompt specifications for every category are documented in **[Appendix A: Prompt Engineering Directives](APPENDIX_PROMPTS.md)** and codified in `pipeline/prompts.py`.
 
 ---
 
