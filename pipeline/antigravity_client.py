@@ -10,7 +10,7 @@ import yaml
 from pathlib import Path
 from typing import Dict, List, Optional
 
-CONFIG_PATH = Path("C:/Users/abebr/AppData/Local/hermes/config.yaml")
+CONFIG_PATH = Path.home() / "AppData" / "Local" / "hermes" / "config.yaml"
 
 
 def load_9router_config():
