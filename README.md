@@ -64,6 +64,18 @@ Dialogues are contextualized across 127 grounded scenarios spanning contemporary
 * **Social, Family & Academia:** Nowruz visits, dinner hosting, cafe bill splitting, university thesis defenses, dormitories, mourning rituals, film festivals, literary forums.
 
 * **Zero Leakage:** $\text{Train} \cap \text{Test} = \emptyset$ (No overlapping utterances between splits).
+
+---
+
+## 🚀 Baseline Experiments (Google Colab Ready)
+
+Run classical machine learning and pre-trained Persian language model (PLM) baselines with free GPU:
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/abebr/persian-pragmatics-dataset/blob/main/notebooks/baselines.ipynb)
+
+* **TF-IDF + Logistic Regression:** Classical n-gram baseline.
+* **ParsBERT (`HooshvareLab/bert-fa-base-uncased`):** Persian Transformer fine-tuning.
+* **Evaluation Metrics:** Accuracy, Macro-F1 across all 8 pragmatic categories.
 * **Strict Uniqueness:** 5,000 unique sentences in train, 1,000 unique sentences in test.
 * **Audit Score:** 100% Acceptance across all 6 criteria in `pipeline/auditor.py`.
 

@@ -35,6 +35,18 @@
 * **خانواده، جامعه و دانشگاه:** دیدوبازدید عید نوروز، میزبانی شام، دانگ کافه، جلسات دفاع پایان‌نامه، خوابگاه دانشجویی، مراسم سوگواری، جشنواره فیلم و محافل ادبی.
 
 * **عدم نشت داده (Zero Leakage):** اشتراک جملات آموزش و آزمون دقیقاً صفر است ($\text{Train} \cap \text{Test} = \emptyset$).
+
+---
+
+## 🚀 اجرای آزمایش‌های پایه در گوگل کولب (Google Colab)
+
+برای آموزش و ارزیابی مدل‌های پایه با پردازنده گرافیکی رایگان گوگل کولب روی دکمه زیر کلیک کنید:
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/abebr/persian-pragmatics-dataset/blob/main/notebooks/baselines.ipynb)
+
+* **TF-IDF + Logistic Regression:** مدل پایه رگرسیون کلاسیک
+* **پارس‌برت (`HooshvareLab/bert-fa-base-uncased`):** مدل ترنسفورمر فارسی
+* **معیارها:** ارزیابی خودکار با Accuracy و Macro-F1 روی ۱,۰۰۰ نمونه تست و چاپ جدول آماده مقاله
 * **تنوع کامل:** ۵,۰۰۰ جمله یکتا در Train و ۱,۰۰۰ جمله یکتا در Test.
 
 ---
