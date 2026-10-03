@@ -78,7 +78,7 @@ print(dataset)
 
 ## 🎯 Overview & Motivation
 
-State-of-the-art Large Language Models (GPT-4o, Claude 3.5, Qwen 2.5) excel at semantic parsing in standard Persian, but consistently fail at **Conversational Pragmatics** (کاربردشناسی زبان) and **Indirect Speech Acts** (کنش‌های گفتاری غیرمستقیم).
+State-of-the-art Large Language Models (GPT-5.4, Claude Sonnet 4.6, Gemini 3.8 Flash, Qwen 3.8) excel at semantic parsing in standard Persian, but consistently fail at **Conversational Pragmatics** (کاربردشناسی زبان) and **Indirect Speech Acts** (کنش‌های گفتاری غیرمستقیم).
 
 When a Persian speaker says:
 * **"مهمون ما باشید، قابل نداره"** *(Ta'arof)*: Naive LLMs take it literally and reply: *"Thank you for the free item!"* instead of initiating the standard payment ritual.
