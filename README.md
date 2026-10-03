@@ -56,6 +56,13 @@ configs:
 7. **`indirect_refusal`** (رد غیرمستقیم تعهد و خواهش): 625 train / 125 test
 8. **`conversational_repair`** (ترمیم مکالمه و رفع سوءتفاهم کلامی): 625 train / 125 test
 
+### 🏙️ Sociolinguistic Domains & Real-World Contexts:
+Dialogues are contextualized across 127 grounded scenarios spanning contemporary Iranian life:
+* **Transportation & Commute:** City taxis, ride-hailing (Snapp), metro/BRT lines, intercity roads, factory commuter vans, reckless driving, snowbound mountain passes.
+* **Workplace, Tech & Governance:** Software engineering teams, code review, server outages, corporate meetings, job interviews, registry counters, bank tellers.
+* **Commerce & Everyday Trade:** Boutiques, supermarkets, fruit bazaars, traditional bakeries, auto repair shops, oil change garages, appliance servicing.
+* **Social, Family & Academia:** Nowruz visits, dinner hosting, cafe bill splitting, university thesis defenses, dormitories, mourning rituals, film festivals, literary forums.
+
 * **Zero Leakage:** $\text{Train} \cap \text{Test} = \emptyset$ (No overlapping utterances between splits).
 * **Strict Uniqueness:** 5,000 unique sentences in train, 1,000 unique sentences in test.
 * **Audit Score:** 100% Acceptance across all 6 criteria in `pipeline/auditor.py`.
@@ -138,22 +145,6 @@ To guarantee research-grade scientific rigor for academic publication:
 - Read the full technical report and academic preprint: **[paper/REPORT.md](paper/REPORT.md)**.
 - See prompt engineering specifications in **[paper/APPENDIX_PROMPTS.md](paper/APPENDIX_PROMPTS.md)**.
 - The pipeline provides built-in multi-criteria quality auditing via `pipeline/auditor.py`.
-
----
-
-## 🇮🇷 خلاصه به زبان فارسی
-
-این مخزن یک بنچ‌مارک و دیتاست آموزشی برای ارزیابی و تنظیم دقیق (Alignment / SFT) مدل‌های زبانی در درک **کاربردشناسی زبان فارسی (Pragmatics)** و **کنش‌های گفتاری غیرمستقیم** است.
-
-دادگان شامل **۶,۰۰۰ جفت دیالوگ منحصربه‌فرد** (۵,۰۰۰ آموزش و ۱,۰۰۰ آزمون) در **۸ دسته زبان‌شناختی** است که توسط مدل **Gemini 3.8 Flash** تحت پرامپتینگ ساختاریافته و با نظارت دقیق زبان‌شناسی تولید شده‌اند:
-1. تعارفات آیینی (`taarof`)
-2. طعنه و کنایه بدون واژه‌های کلیشه‌ای (`sarcasm`)
-3. کنش‌های گفتاری غیرمستقیم (`indirect_request`)
-4. استلزام گفتگویی گریس (`implicature`)
-5. پرسش‌های بلاغی و توبیخی (`rhetorical_question`)
-6. فروتنی و شکسته‌نفسی (`modesty_self_deprecation`)
-7. رد غیرمستقیم تعهد (`indirect_refusal`)
-8. ترمیم مکالمه و رفع سوءتفاهم (`conversational_repair`)
 
 ---
 
